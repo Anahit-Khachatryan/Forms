@@ -1,0 +1,31 @@
+<form #signInForm="ngForm" (ngSubmit)="onSubmit($event)">
+    <div>
+        <input [(ngModel)]="signInModel.login" 
+               name="login" 
+               type="text" 
+               placeholder="login">
+    </div>
+    <br>
+    <div>
+        <input [(ngModel)]="signInModel.password" 
+               name="password" 
+               type="text"
+               required
+               placeholder="password"
+               #password="ngModel">
+        <span [hidden]="password.valid || password.pristine">Password is required</span>
+    </div>
+  <br>
+    <div>
+        <input [(ngModel)]="signInModel.confirmPassword" 
+               name="confirmPassword" 
+               type="text"
+               required
+               placeholder="confirm password"
+               #confirmPassword="ngModel">
+        <span [hidden]="confirmPassword.valid || confirmPassword.pristine">Password is required</span> 
+        <!-- orinak lriv stugumnery confirmi estegh petka anenk u template-um dra hamar anum enk reactive form-um -->
+    </div>
+    <br>
+    <button>Sign In</button>
+</form>
