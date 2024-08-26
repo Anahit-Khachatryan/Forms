@@ -1,1 +1,44 @@
-<app-template-driven-form />
+<!-- <app-template-driven-form /> -->
+ <app-sign-in-driven />
+ <div #tooltipElement>
+  Tooltip text here.
+</div>
+<div [appOverflowTooltip]="tooltipElement">
+  This div will show tooltip if overflow.
+</div>
+
+@for( data of products; track data; let i = $index ) {
+   {{i}} - {{data.name}} 
+}
+
+
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <input type="text" formControlName="login" placeholder="login">
+  </div>
+  <div class="form-control">
+    <input type="password" formControlName="password" placeholder="password">
+  </div>
+  <div formArrayName="addresses">
+    @for (address of getAddresses().controls;let i = $index; track address) {
+      <div class="form-control">
+        <input type="text" [formControlName]="i" [placeholder]="'address' + (i +1)">
+        <button (click)="onRemove(i)">Remove</button>
+      </div>
+
+    }
+    <button type='button' 
+           (click)="addAddress()">
+           Add Address
+    </button>
+  </div>
+  
+
+  <div>
+    <button type="button" (click)="onReset()">Reset</button>
+
+    <button>Sign In</button>
+  </div>
+</form>
+
+<app-users />

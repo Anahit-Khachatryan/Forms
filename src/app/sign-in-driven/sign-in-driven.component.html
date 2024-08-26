@@ -1,0 +1,27 @@
+<form [formGroup]="signInForm" (ngSubmit)="onSumbit()">
+    <div>
+       <input type="text" formControlName="login">
+       <br />
+       <span class="error-message" [hidden]="signInForm.controls['login'].valid || signInForm.controls['login'].pristine">Login is required</span>
+    </div>
+    <br>
+    <div>
+      <input type="password" formControlName="password">
+      <br />
+      <div *ngIf="signInForm.controls['password'].invalid && !signInForm.controls['password'].pristine">
+        <span class="error-message" *ngIf="signInForm.controls['password'].errors?.['required']">Password is required</span>
+        <span class="error-message" *ngIf="signInForm.controls['password'].errors?.['minlength']">
+          Min Length Should be {{signInForm.controls['password'].getError('minlength').requiredLength}}
+        </span>
+      </div>
+      
+    </div>
+    <br>
+    <button [disabled]="signInForm.invalid">Sighn In</button>
+</form>
+
+
+<!-- <input type="text" [formControl]="input">
+<span></span>
+<button (click)="handleClick()">Click</button> -->
+

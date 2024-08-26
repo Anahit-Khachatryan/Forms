@@ -1,0 +1,7 @@
+<p>users works!</p>
+
+@for(user of users; track user) {
+    <p>{{user.name | myuppercase: 'Mr.': 4}} - {{user.birthDate | date: 'E:dd:MMM:yyyy HH:mm'}}</p>
+}
+
+<button (click)="onClick()">Click</button>
